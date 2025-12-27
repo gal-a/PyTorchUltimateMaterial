@@ -7,7 +7,9 @@ from torch.utils.data import Dataset, DataLoader
 from collections import defaultdict
 from sklearn.metrics import mean_squared_error
 #%% data import
-df = pd.read_csv("ratings.csv")
+from pathlib import Path
+data_path = Path(__file__).resolve().parent / "ratings.csv"
+df = pd.read_csv(data_path)
 df.head(2)
 #%%
 print(f"Unique Users: {df.userId.nunique()}, Unique Movies: {df.movieId.nunique()}")
@@ -27,7 +29,7 @@ class MovieDataset(Dataset):
         movies = self.movies[idx]
         ratings = self.ratings[idx]
         
-        return torch.tensor(users, dtype=torch.long), torch.tensor(movies, dtype=torch.long),torch.tensor(ratings, dtype=torch.long),
+        return torch.tensor(users, dtype=torch.long), torch.tensor(movies, dtype=torch.long), torch.tensor(ratings, dtype=torch.float32)
        
 #%% Model Class
 class RecSysModel(nn.Module):

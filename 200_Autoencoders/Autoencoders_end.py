@@ -11,7 +11,8 @@ import matplotlib.pyplot as plt
 import torchvision.utils 
 
 #%% Dataset and data loader
-path_images = 'data/train'
+from pathlib import Path
+path_images = Path(__file__).resolve().parent / 'data/train'
 
 transform = transforms.Compose(
     [transforms.Resize((64,64)),

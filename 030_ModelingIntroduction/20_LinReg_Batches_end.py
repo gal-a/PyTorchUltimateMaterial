@@ -50,7 +50,7 @@ optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
 losses = []
 slope, bias = [], []
 NUM_EPOCHS = 1000
-BATCH_SIZE = 2
+BATCH_SIZE = 4
 for epoch in range(NUM_EPOCHS):
     for i in range(0, X.shape[0], BATCH_SIZE):
         # optimization
